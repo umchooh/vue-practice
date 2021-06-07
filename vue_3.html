@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3 - Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .container{width:50%; text-align: center;}
+    </style>
+</head>
+<body>
+    <div id="app">
+		<span v-if="!profile">
+            <div v-bind:class="profile.loadContent">
+                <img v-bind:src="profile.image" alt="" v-bind:style="profile.picture">
+                <h2><b>{{profile.fname}} {{profile.lname}}</b></h2>
+                <p>{{profile.desc}}</p>
+                <p>{{profile.bio}}</p>
+            </div>
+		</span>
+        <span v-else-if="!profile.desc">
+			<div v-bind:class="profile.loadContent">
+                <img v-bind:src="profile.image" alt="" v-bind:style="profile.picture">
+                <h2><b>{{profile.fname}} {{profile.lname}}</b></h2>
+                <p>No Description Available.</p>
+                <p>{{profile.bio}}</p>
+            </div>
+        </span>
+		<span v-else-if="!profile.bio">
+			<div v-bind:class="profile.loadContent">
+                <img v-bind:src="profile.image" alt="" v-bind:style="profile.picture">
+                <h2><b>{{profile.fname}} {{profile.lname}}</b></h2>
+                <p>{{profile.desc}}</p>
+				<p>No Bio Available.</p>
+            </div>
+        </span>
+		<span v-else-if="!profile.image">
+			<div v-bind:class="profile.loadContent">
+                <img v-bind:src="empty.noimage" alt="" v-bind:style="profile.picture">
+                <h2><b>{{profile.fname}} {{profile.lname}}</b></h2>
+                <p>{{profile.desc}}</p>
+				<p>{{profile.bio}}</p>
+            </div>
+        </span>
+		<span v-else>
+ 			No Profile Data found.
+		</span>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			profile:{
+				/*fname: "Hui Ser",
+				lname: "Choo",
+                desc: "Web Developer",
+                bio: "My name is Hui Ser Choo. I started zero-coding prior to entering Humber College’s Web Development program. As I learn more I am devoted more to technology, always looking forward to exploring new languages and tools to solve any interesting questions/problems. I have strong work ethics and strong interpersonal skills. I always enjoy new challenges and I am generally enthusiastic about new projects. Outside of work, I like cooking, baking and traveling.",
+                image: "images/\photo_of_me_desktop.jpg",
+                picture: {
+                    borderRadius: '50%',
+                    maxWidth: '50%'
+                },
+                loadContent: 'container',
+			},
+			empty:{
+				noimage: "images/no_image.jpg"*/
+			}
+			
+		}
+		
+	});
+	</script>
+    <!--
+		//step 1: Read Code Above
+		//step 2: Does the profile show up?
+		
+		v-if="boolean_expression"
+		v-else-if="boolean_expression"
+		v-else
+		
+		
+		You can code an if, else if, else statement into your render using the v-if, v-else-if, v-else.
+		Just like in regular programming, v-else has no condition
+		
+		Notice how the "profile" object is null. Reminder that null is Falsey in the boolean context.
+		
+		ASYNCHRONOUS LEARNING EXERCISE
+		1. Use the profile object to store information about yourself {fname, lname, desc, bio, pic}
+		2. Create a figure, figcaption, and image markup which acts as a description for yourself
+			(Something like this https://www.w3schools.com/howto/howto_css_cards.asp)
+		3. Write conditionals if information is missing (i.e. 'no bio available' if bio is blank, generic image if no pic is found)
+		-->
+</body>
+</html>

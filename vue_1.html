@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .highlight{border:10px solid yellow;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="{highlight}"> <!--Include more than one class : "[highlight,loadClass]"-->
+            <img v-bind:src="src" v-bind:title="title" v-bind:alt="alt" v-bind:style="picture"/>
+        </div>
+    </div>
+    
+    <script>
+        var app = new Vue ({
+            el: '#app', 
+            data: {
+                highlight: 'border',
+                src: 'https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+                alt: 'Selective Focus Photography of Orange Tabby Cat',
+                title: 'Cat',
+                picture: {
+                    width: '100%'
+                }    
+            }
+
+        });
+    </script>
+    <!--Photo by EVG Culture from Pexels<a>https://www.pexels.com/photo/selective-focus-photography-of-orange-tabby-cat-1170986/</a>
+  -->
+</body>
+</html>

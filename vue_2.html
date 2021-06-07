@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 - Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .special {background:yellow; border: 1px dotted #fe0000; padding:30px; display:block; text-align:center;}
+        .important {font-weight:bold; font-size:30px;}
+    </style>
+</head>
+<body>
+    <div id="app">
+		<span v-bind:class="{special:isSpecial, important:isImportant}">
+			look at me!
+		</span>
+	</div>
+	
+	<script>
+	var app = new Vue({
+		el: '#app',
+		data:{
+			isImportant:1,
+            isSpecial:1
+		}
+	});
+	</script>
+    
+</body>
+</html>
