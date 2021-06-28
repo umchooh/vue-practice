@@ -7,22 +7,74 @@
     <title>Lab 7 - Vue.js</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        
+        .formfield{margin-bottom:10px;}
     </style>
 </head>
 <body>
-    <div id="app">
-		
-	
-	<script>
-	var app = new Vue({
-		el: '#app',
-		data:{
-			
-		}
-		
-	});
-	</script>
+<p>Speed fines are not fine! <a href="https://cemc.uwaterloo.ca/contests/computing/2012/index.html">from the J1 problem hosted by the CCC.</a></p>
+<div id="app">
+    <div class="formfield">
+        <label>Enter the speed limit: <label> <input v-model="speed_limit">
+    </div>
+    <div class="formfield">
+        <label>Enter the recorded speed of the car: <label> <input v-model="recorded_speed_limit">
+    </div>
+    <div id="result">
+        <div><label>show diagnostics:</label><input type="checkbox" v-model="speed_calculation"></div>
+        <div v-if="speed_calculation">Speed different: {{speed_different}}</div>
+        <div v-if="speed_calculation">Is it within the limit: {{is_Good}}</div>
+        <span v-if="is_Good">Congratulations, you are within the speed limit!</span>
+        <span v-else="show_fine">{{show_fine}}</span>
+    </div>
+</div>
+
+<script>
+var app = new Vue({
+    el: '#app',
+    data:{
+        speed_calculation:false,
+        speed_limit:0,
+        recorded_speed_limit:0,
+        fines: [
+            {speed_different: '1 to 20', fine: '$100'},
+            {speed_different: '21 to 30', fine: '$270'},
+            {speed_different: '31 or above', fine: '$500'},
+        ]
+    },
+    computed:{
+        speed_different:function(){
+            return (this.speed_limit) - (this.recorded_speed_limit);	
+        },
+        is_Good:function(){
+            
+            return this.recorded_speed_limit>=this.speed_limit;	
+        },
+        show_fine : function(){
+                console.log(this.speed_different);
+                if(this.speed_different >= 1 && this.speed_different <= 20){
+                    return "You are speeding and your fine is $100";
+                }else if(this.speed_different >= 21 && this.speed_different <= 30){
+                    return "You are speeding and your fine is $270";
+                }else if(this.speed_different >= 31) {
+                    return "You are speeding and your fine is $500";
+                }
+            }
+    }
+});
+
+</script>
+<!--
+    v-model will allow you to quickly bind form elements to the data property.
+    Make sure to set a default value!
+    The Computed property can be used like data, except for values that are calculated from data properties.
+    In this example 'treat_total' is computed from data properties, and 'is_happy' is computed from 'treat_total'.
+    
+    ASYNCHRONOUS LEARNING EXERCISE : J1
+    - Find any J1 problem
+    - Imagine an interface that allows the user to enter data on the webpage
+    - Build using v-model and computed properties!
+
+-->
     
 </body>
 </html>
