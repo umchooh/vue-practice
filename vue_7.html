@@ -20,7 +20,7 @@
         <label>Enter the recorded speed of the car: <label> <input v-model="recorded_speed_limit">
     </div>
     <div id="result">
-        <div><label>show diagnostics:</label><input type="checkbox" v-model="speed_calculation"></div>
+        <div><label>speed analysis:</label><input type="checkbox" v-model="speed_calculation"></div>
         <div v-if="speed_calculation">Speed different: {{speed_different}}</div>
         <div v-if="speed_calculation">Is it within the limit: {{is_Good}}</div>
         <span v-if="is_Good">Congratulations, you are within the speed limit!</span>
@@ -35,11 +35,6 @@ var app = new Vue({
         speed_calculation:false,
         speed_limit:0,
         recorded_speed_limit:0,
-        fines: [
-            {speed_different: '1 to 20', fine: '$100'},
-            {speed_different: '21 to 30', fine: '$270'},
-            {speed_different: '31 or above', fine: '$500'},
-        ]
     },
     computed:{
         speed_different:function(){
